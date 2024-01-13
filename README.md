@@ -1,6 +1,6 @@
-# Cat-Food-Helper
+# Cat-Food-Tracker
 
-The Cat-Food-Logger is a user-friendly application that allows cat owners to keep track of their feline friends' culinary preferences. With a simple and intuitive login system, users can record and analyze their cats' reactions to different types of cat food.
+The Cat-Food-Tracker is a user-friendly application that allows cat owners to keep track of their feline friends' culinary preferences. With a simple and intuitive login system, users can record and analyze their cats' reactions to different types of cat food.
 
 ## Key Features:
 
