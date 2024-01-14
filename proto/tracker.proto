@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package tracker;
+
+option go_package = "github.com/ansoncht/Cat-Food-Tracker/tracker";
+
+// The tracking service definition.
+service Tracker {
+  // Registers a user
+  rpc RegisterUser (UserRequest) returns (UserReply) {}
+}
+
+// UserRequest represents the input structure for the RegisterUser RPC.
+// It contains the necessary information for registering a user, including
+// details such as username, email, and password.
+message UserRequest {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+// UserReply represents the response structure for the RegisterUser RPC.
+// It provides feedback about the user registration process, indicating
+// whether the registration was successful and include additional
+// information such as a username, and user ID.
+message UserReply {
+    string username = 1;
+    int32 id = 2;
+}
