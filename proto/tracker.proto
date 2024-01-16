@@ -25,5 +25,5 @@ message UserRequest {
 // information such as a username, and user ID.
 message UserReply {
     string username = 1;
-    int32 id = 2;
+    string uuid = 2;
 }
