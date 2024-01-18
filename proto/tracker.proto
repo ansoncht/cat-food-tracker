@@ -6,24 +6,56 @@ option go_package = "github.com/ansoncht/Cat-Food-Tracker/tracker";
 
 // The tracking service definition.
 service Tracker {
-  // Registers a user
-  rpc RegisterUser (UserRequest) returns (UserReply) {}
+  // Creates a user
+  rpc CreateUser (CreateUserRequest) returns (CreateUserReply) {}
+  // Creates a cat
+  rpc CreateCat (CreateCatRequest) returns (CreateCatReply) {}
+  // Creates a cat food
+  // rpc CreateFood (CreateFoodRequest) returns (CreateFoodReply) {}
 }
 
-// UserRequest represents the input structure for the RegisterUser RPC.
-// It contains the necessary information for registering a user, including
+// CreateUserRequest represents the input message for the CreateUser RPC.
+// It contains the necessary information for creating a user, including
 // details such as username, email, and password.
-message UserRequest {
-    string username = 1;
-    string email = 2;
-    string password = 3;
+message CreateUserRequest {
+  // The username of the user
+  string username = 1;
+
+  // The email of the user
+  string email = 2;
+
+  // The password of the user
+  string password = 3;
 }
 
-// UserReply represents the response structure for the RegisterUser RPC.
-// It provides feedback about the user registration process, indicating
-// whether the registration was successful and include additional
-// information such as a username, and user ID.
-message UserReply {
-    string username = 1;
-    string uuid = 2;
+// CreateUserReply represents the response message for the CreateUser RPC.
+// It provides feedback about the user creation process, indicating
+// whether the creation was successful and include additional
+// information such as a user id.
+message CreateUserReply {
+  // The user_id of the User
+  string user_id = 1;
 }
+
+// CreateCatRequest represents the input structure for the CreateCat RPC.
+// It contains the information needed to create a new cat profile.
+message CreateCatRequest {
+  // The name of the cat.
+  string name = 1;
+
+  // The age of the cat in years.
+  int32 age = 2;
+
+  // The breed of the cat.
+  string breed = 3;
+}
+
+// CreateCatReply represents the output structure for the CreateCat RPC.
+// It provides feedback about the cat creation process, indicating
+// whether the creation was successful and include additional
+// information such as a cat id.
+message CreateCatReply {
+  // The user_id of the Cat
+  string cat_id = 1;
+}
+
