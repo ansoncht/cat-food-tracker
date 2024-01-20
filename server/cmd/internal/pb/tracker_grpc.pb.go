@@ -22,8 +22,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrackerClient interface {
-	// Registers a user
-	RegisterUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserReply, error)
+	// Creates a user
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserReply, error)
+	// Creates a cat
+	CreateCat(ctx context.Context, in *CreateCatRequest, opts ...grpc.CallOption) (*CreateCatReply, error)
 }
 
 type trackerClient struct {
@@ -34,9 +36,18 @@ func NewTrackerClient(cc grpc.ClientConnInterface) TrackerClient {
 	return &trackerClient{cc}
 }
 
-func (c *trackerClient) RegisterUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserReply, error) {
-	out := new(UserReply)
-	err := c.cc.Invoke(ctx, "/tracker.Tracker/RegisterUser", in, out, opts...)
+func (c *trackerClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserReply, error) {
+	out := new(CreateUserReply)
+	err := c.cc.Invoke(ctx, "/tracker.Tracker/CreateUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trackerClient) CreateCat(ctx context.Context, in *CreateCatRequest, opts ...grpc.CallOption) (*CreateCatReply, error) {
+	out := new(CreateCatReply)
+	err := c.cc.Invoke(ctx, "/tracker.Tracker/CreateCat", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +58,10 @@ func (c *trackerClient) RegisterUser(ctx context.Context, in *UserRequest, opts 
 // All implementations must embed UnimplementedTrackerServer
 // for forward compatibility
 type TrackerServer interface {
-	// Registers a user
-	RegisterUser(context.Context, *UserRequest) (*UserReply, error)
+	// Creates a user
+	CreateUser(context.Context, *CreateUserRequest) (*CreateUserReply, error)
+	// Creates a cat
+	CreateCat(context.Context, *CreateCatRequest) (*CreateCatReply, error)
 	mustEmbedUnimplementedTrackerServer()
 }
 
@@ -56,8 +69,11 @@ type TrackerServer interface {
 type UnimplementedTrackerServer struct {
 }
 
-func (UnimplementedTrackerServer) RegisterUser(context.Context, *UserRequest) (*UserReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
+func (UnimplementedTrackerServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (UnimplementedTrackerServer) CreateCat(context.Context, *CreateCatRequest) (*CreateCatReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCat not implemented")
 }
 func (UnimplementedTrackerServer) mustEmbedUnimplementedTrackerServer() {}
 
@@ -72,20 +88,38 @@ func RegisterTrackerServer(s grpc.ServiceRegistrar, srv TrackerServer) {
 	s.RegisterService(&Tracker_ServiceDesc, srv)
 }
 
-func _Tracker_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserRequest)
+func _Tracker_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrackerServer).RegisterUser(ctx, in)
+		return srv.(TrackerServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tracker.Tracker/RegisterUser",
+		FullMethod: "/tracker.Tracker/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrackerServer).RegisterUser(ctx, req.(*UserRequest))
+		return srv.(TrackerServer).CreateUser(ctx, req.(*CreateUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Tracker_CreateCat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrackerServer).CreateCat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tracker.Tracker/CreateCat",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrackerServer).CreateCat(ctx, req.(*CreateCatRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -98,8 +132,12 @@ var Tracker_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TrackerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "RegisterUser",
-			Handler:    _Tracker_RegisterUser_Handler,
+			MethodName: "CreateUser",
+			Handler:    _Tracker_CreateUser_Handler,
+		},
+		{
+			MethodName: "CreateCat",
+			Handler:    _Tracker_CreateCat_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,12 +9,6 @@ import (
 )
 
 var (
-	// Variables
-	customLogger Logger
-	loggerError  error
-	once         sync.Once
-
-	// Errors
 	ErrCreateLogger = errors.New("logger creation failed")
 )
 
@@ -25,11 +19,17 @@ type Logger struct {
 }
 
 func GetLogger() (Logger, error) {
+	var (
+		customLogger Logger
+		errLogger    error
+		once         sync.Once
+	)
+
 	once.Do(func() {
-		customLogger, loggerError = newLogger()
+		customLogger, errLogger = newLogger()
 	})
 
-	if loggerError != nil {
+	if errLogger != nil {
 		return Logger{}, fmt.Errorf("in GetLogger():: %w", ErrCreateLogger)
 	}
 
@@ -39,19 +39,25 @@ func GetLogger() (Logger, error) {
 func newLogger() (Logger, error) {
 	var logger Logger
 
-	logger.InfoLogger = log.New(os.Stdout, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
+	logger.InfoLogger = log.New(os.Stdout, "INFO: ",
+		log.Ldate|log.Ltime|log.Lshortfile)
 	if logger.InfoLogger == nil {
-		return Logger{}, fmt.Errorf("in newLogger():: InfoLogger - %w", ErrCreateLogger)
+		return Logger{},
+			fmt.Errorf("in newLogger():: InfoLogger - %w", ErrCreateLogger)
 	}
 
-	logger.WarningLogger = log.New(os.Stdout, "WARNING: ", log.Ldate|log.Ltime|log.Lshortfile)
+	logger.WarningLogger = log.New(os.Stdout, "WARNING: ",
+		log.Ldate|log.Ltime|log.Lshortfile)
 	if logger.WarningLogger == nil {
-		return Logger{}, fmt.Errorf("in newLogger():: WarningLogger - %w", ErrCreateLogger)
+		return Logger{},
+			fmt.Errorf("in newLogger():: WarningLogger - %w", ErrCreateLogger)
 	}
 
-	logger.ErrorLogger = log.New(os.Stdout, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
+	logger.ErrorLogger = log.New(os.Stdout, "ERROR: ",
+		log.Ldate|log.Ltime|log.Lshortfile)
 	if logger.ErrorLogger == nil {
-		return Logger{}, fmt.Errorf("in newLogger():: ErrorLogger - %w", ErrCreateLogger)
+		return Logger{},
+			fmt.Errorf("in newLogger():: ErrorLogger - %w", ErrCreateLogger)
 	}
 
 	return logger, nil
