@@ -40,17 +40,32 @@ func (m *MockTrackerService) EXPECT() *MockTrackerServiceMockRecorder {
 	return m.recorder
 }
 
-// RegisterUser mocks base method.
-func (m *MockTrackerService) RegisterUser(ctx context.Context, user *tracker.UserRequest) (*tracker.UserReply, error) {
+// CreateCat mocks base method.
+func (m *MockTrackerService) CreateCat(ctx context.Context, user *tracker.CreateCatRequest) (*tracker.CreateCatReply, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "RegisterUser", ctx, user)
-	ret0, _ := ret[0].(*tracker.UserReply)
+	ret := m.ctrl.Call(m, "CreateCat", ctx, user)
+	ret0, _ := ret[0].(*tracker.CreateCatReply)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// RegisterUser indicates an expected call of RegisterUser.
-func (mr *MockTrackerServiceMockRecorder) RegisterUser(ctx, user any) *gomock.Call {
+// CreateCat indicates an expected call of CreateCat.
+func (mr *MockTrackerServiceMockRecorder) CreateCat(ctx, user any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RegisterUser", reflect.TypeOf((*MockTrackerService)(nil).RegisterUser), ctx, user)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateCat", reflect.TypeOf((*MockTrackerService)(nil).CreateCat), ctx, user)
+}
+
+// CreateUser mocks base method.
+func (m *MockTrackerService) CreateUser(ctx context.Context, user *tracker.CreateUserRequest) (*tracker.CreateUserReply, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateUser", ctx, user)
+	ret0, _ := ret[0].(*tracker.CreateUserReply)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateUser indicates an expected call of CreateUser.
+func (mr *MockTrackerServiceMockRecorder) CreateUser(ctx, user any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateUser", reflect.TypeOf((*MockTrackerService)(nil).CreateUser), ctx, user)
 }

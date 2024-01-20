@@ -13,15 +13,20 @@ import (
 
 // TrackerService is an interface for all the RPCs.
 type TrackerService interface {
-	RegisterUser(
+	CreateUser(
 		ctx context.Context,
-		user *tracker.UserRequest,
-	) (*tracker.UserReply, error)
+		user *tracker.CreateUserRequest,
+	) (*tracker.CreateUserReply, error)
+	CreateCat(
+		ctx context.Context,
+		user *tracker.CreateCatRequest,
+	) (*tracker.CreateCatReply, error)
 }
 
 // TrackerServer is a struct for TrackerServer gRPC server.
 type TrackerServer struct {
 	tracker.UnimplementedTrackerServer
+	config Config
 }
 
 // Creates a new TrackerServer.
@@ -30,34 +35,62 @@ func NewTrackerServer() *TrackerServer {
 }
 
 // Creates a new gRPC server.
-func (server *TrackerServer) Run(ctx context.Context) error {
+func (server *TrackerServer) Run() error {
 	logger, _ := logger.GetLogger()
 
-	lis, err := net.Listen("tcp", grpcPort)
+	lis, err := net.Listen("tcp", server.config.GrpcPort)
 	if err != nil {
-		logger.ErrorLogger.Fatalf("in Run():: Failed to listen %v", err)
+		logger.ErrorLogger.Fatalf("in Run():: Failed to listen - %v", err)
 	}
 
-	s := grpc.NewServer()
+	grpcServer := grpc.NewServer()
 
-	tracker.RegisterTrackerServer(s, server)
+	tracker.RegisterTrackerServer(grpcServer, server)
 
-	logger.InfoLogger.Printf("in Run():: Server listening at %v", lis.Addr())
+	logger.InfoLogger.Printf("in Run():: Server listening at - %v", lis.Addr())
 
-	reflection.Register(s)
+	reflection.Register(grpcServer)
 
-	return s.Serve(lis)
+	if err := grpcServer.Serve(lis); err != nil {
+		logger.ErrorLogger.Fatalf("in Run():: Failed to serve gRPC server - %v", err)
+
+		return err
+	}
+
+	return nil
 }
 
-func (server *TrackerServer) RegisterUser(ctx context.Context, request *tracker.UserRequest) (*tracker.UserReply, error) {
+func (server *TrackerServer) CreateUser(
+	_ context.Context,
+	request *tracker.CreateUserRequest,
+) (*tracker.CreateUserReply, error) {
 	logger, _ := logger.GetLogger()
-	logger.InfoLogger.Printf("in RegisterUser():: Received new user registration request - {username: %s, email: %s}", request.Username, request.Email)
+	logger.InfoLogger.Printf(
+		"in RegisterUser():: Received new user registration request - "+
+			"{username: %s, email: %s}", request.Username, request.Email)
 
 	userID := uuid.New()
 
-	response := &tracker.UserReply{
-		Username: request.Username,
-		Uuid:     userID.String(),
+	response := &tracker.CreateUserReply{
+		UserId: userID.String(),
+	}
+
+	return response, nil
+}
+
+func (server *TrackerServer) CreateCat(
+	_ context.Context,
+	request *tracker.CreateCatRequest,
+) (*tracker.CreateCatReply, error) {
+	logger, _ := logger.GetLogger()
+	logger.InfoLogger.Printf(
+		"in RegisterUser():: Received new user registration request - "+
+			"{name: %s, age: %d, breed: %s}", request.Name, request.Age, request.Breed)
+
+	catID := uuid.New()
+
+	response := &tracker.CreateCatReply{
+		CatId: catID.String(),
 	}
 
 	return response, nil

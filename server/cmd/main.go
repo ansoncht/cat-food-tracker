@@ -1,7 +1,7 @@
 package main
 
 import (
-	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -13,11 +13,16 @@ import (
 
 const (
 	shortHelp = "Track and log your cat's food preferences and experiences."
-	longHelp  = `Cat Food Tracker helps you keep track of your cat's food preferences and experiences. 
-	Log details about different cat foods, record your cat's reactions, and maintain a comprehensive history of their meals. 
-	Use the command-line interface for easy data entry and ensure your cat enjoys a happy and healthy diet.`
+	longHelp  = `Cat Food Tracker helps you 
+	keep track of your cat's food preferences and experiences. 
+	Log details about different cat foods, 
+	record your cat's reactions, 
+	and maintain a comprehensive history of their meals. 
+	Use the command-line interface for easy data entry and 
+	ensure your cat enjoys a happy and healthy diet.`
 )
 
+// nolint
 // Print a cool ASCII art header.
 func printCoolHeader() {
 	log.Print(`
@@ -47,38 +52,49 @@ func printCoolHeader() {
 `)
 }
 
-func newCommand(logger logger.Logger) *cobra.Command {
-	ctx := context.Background()
+func newCommand() *cobra.Command {
+	logger, _ := logger.GetLogger()
 
-	return &cobra.Command{
+	logger.InfoLogger.Println("in newCommand():: Starting Server...")
+
+	cmd := &cobra.Command{
 		Use:     "tracker [args]",
 		Short:   shortHelp,
 		Long:    longHelp,
 		Example: "tracker",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			if err := server.NewTrackerServer().Run(ctx); err != nil {
-				logger.ErrorLogger.Fatalf("in newCommand():: Failed to create gRPC server")
-				return err
+			trackerServer := server.NewTrackerServer()
+
+			trackerServer.GetFlag(cmd)
+
+			if err := trackerServer.Run(); err != nil {
+				logger.ErrorLogger.Fatalf(
+					"in newCommand():: Failed to create gRPC server - %v", err)
+
+				return fmt.Errorf("Cobra RunE error: %w", err)
 			}
+
 			return nil
 		},
 	}
+
+	server.SetFlag(cmd)
+
+	return cmd
 }
 
 func main() {
+	_, err := logger.GetLogger()
+	if err != nil {
+		log.Fatalf("in main():: Failed to initialize logger - %v", err)
+	}
+
 	printCoolHeader()
 
-	server.RegisterFlag()
-
-	logger, err := logger.GetLogger()
-	if err != nil {
-		log.Fatalf("in main():: Initialization failed: %v", err)
+	cmd := newCommand()
+	if err := cmd.Execute(); err != nil {
+		log.Fatalf("in main():: Failed to start server - %v", err)
 	}
 
-	logger.InfoLogger.Println("in main():: Starting Server...")
-
-	if err := newCommand(logger).Execute(); err != nil {
-		os.Exit(1)
-	}
 	os.Exit(0)
 }

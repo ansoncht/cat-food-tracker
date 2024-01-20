@@ -1,30 +1,51 @@
 package server
 
-import "flag"
-
-var (
-	grpcPort string
-	restPort string
+import (
+	"github.com/ansoncht/Cat-Food-Helper/internal/logger"
+	"github.com/spf13/cobra"
 )
 
-// Set the flags.
-func setFlag() {
-	flag.StringVar(
-		&grpcPort,
-		"gRPC Port",
-		":8080",
-		"Port listening for gRPC requests")
-
-	flag.StringVar(
-		&restPort,
-		"REST Port",
-		":8088",
-		"Port listening for REST requests")
+type Config struct {
+	GrpcPort string
+	RestPort string
 }
 
-// Register the flags.
-func RegisterFlag() {
-	setFlag()
+func (server *TrackerServer) GetFlag(cmd *cobra.Command) {
+	logger, _ := logger.GetLogger()
 
-	flag.Parse()
+	grpcPort, err := cmd.Flags().GetString("grpc")
+	if err != nil {
+		logger.ErrorLogger.Fatalf("in GetFlag():: Failed to get gRPC flag - %v", err)
+	}
+
+	restPort, err := cmd.Flags().GetString("rest")
+	if err != nil {
+		logger.ErrorLogger.Fatalf("in GetFlag():: Failed to get REST flag - %v", err)
+	}
+
+	server.config = Config{
+		GrpcPort: grpcPort,
+		RestPort: restPort,
+	}
+}
+
+func SetFlag(cmd *cobra.Command) {
+	var (
+		GrpcPort string
+		RestPort string
+	)
+
+	cmd.Flags().StringVarP(&GrpcPort,
+		"grpc",
+		"g",
+		":8080",
+		"Port listening for gRPC requests",
+	)
+
+	cmd.Flags().StringVarP(&RestPort,
+		"rest",
+		"r",
+		":8088",
+		"Port listening for REST requests",
+	)
 }

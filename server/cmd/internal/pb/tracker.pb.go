@@ -20,21 +20,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// UserRequest represents the input structure for the RegisterUser RPC.
-// It contains the necessary information for registering a user, including
+// CreateUserRequest represents the input message for the CreateUser RPC.
+// It contains the necessary information for creating a user, including
 // details such as username, email, and password.
-type UserRequest struct {
+type CreateUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The username of the user
 	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Email    string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	// The email of the user
+	Email string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	// The password of the user
 	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 }
 
-func (x *UserRequest) Reset() {
-	*x = UserRequest{}
+func (x *CreateUserRequest) Reset() {
+	*x = CreateUserRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tracker_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -42,13 +45,13 @@ func (x *UserRequest) Reset() {
 	}
 }
 
-func (x *UserRequest) String() string {
+func (x *CreateUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserRequest) ProtoMessage() {}
+func (*CreateUserRequest) ProtoMessage() {}
 
-func (x *UserRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_tracker_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -60,47 +63,47 @@ func (x *UserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserRequest.ProtoReflect.Descriptor instead.
-func (*UserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
+func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_tracker_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserRequest) GetUsername() string {
+func (x *CreateUserRequest) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *UserRequest) GetEmail() string {
+func (x *CreateUserRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *UserRequest) GetPassword() string {
+func (x *CreateUserRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
 	}
 	return ""
 }
 
-// UserReply represents the response structure for the RegisterUser RPC.
-// It provides feedback about the user registration process, indicating
-// whether the registration was successful and include additional
-// information such as a username, and user ID.
-type UserReply struct {
+// CreateUserReply represents the response message for the CreateUser RPC.
+// It provides feedback about the user creation process, indicating
+// whether the creation was successful and include additional
+// information such as a user id.
+type CreateUserReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Uuid     string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// The user_id of the User
+	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 }
 
-func (x *UserReply) Reset() {
-	*x = UserReply{}
+func (x *CreateUserReply) Reset() {
+	*x = CreateUserReply{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_tracker_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -108,13 +111,13 @@ func (x *UserReply) Reset() {
 	}
 }
 
-func (x *UserReply) String() string {
+func (x *CreateUserReply) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserReply) ProtoMessage() {}
+func (*CreateUserReply) ProtoMessage() {}
 
-func (x *UserReply) ProtoReflect() protoreflect.Message {
+func (x *CreateUserReply) ProtoReflect() protoreflect.Message {
 	mi := &file_tracker_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -126,21 +129,134 @@ func (x *UserReply) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserReply.ProtoReflect.Descriptor instead.
-func (*UserReply) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserReply.ProtoReflect.Descriptor instead.
+func (*CreateUserReply) Descriptor() ([]byte, []int) {
 	return file_tracker_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *UserReply) GetUsername() string {
+func (x *CreateUserReply) GetUserId() string {
 	if x != nil {
-		return x.Username
+		return x.UserId
 	}
 	return ""
 }
 
-func (x *UserReply) GetUuid() string {
+// CreateCatRequest represents the input structure for the CreateCat RPC.
+// It contains the information needed to create a new cat profile.
+type CreateCatRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The name of the cat.
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// The age of the cat in years.
+	Age int32 `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
+	// The breed of the cat.
+	Breed string `protobuf:"bytes,3,opt,name=breed,proto3" json:"breed,omitempty"`
+}
+
+func (x *CreateCatRequest) Reset() {
+	*x = CreateCatRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tracker_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCatRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCatRequest) ProtoMessage() {}
+
+func (x *CreateCatRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_tracker_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCatRequest.ProtoReflect.Descriptor instead.
+func (*CreateCatRequest) Descriptor() ([]byte, []int) {
+	return file_tracker_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateCatRequest) GetName() string {
 	if x != nil {
-		return x.Uuid
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateCatRequest) GetAge() int32 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
+func (x *CreateCatRequest) GetBreed() string {
+	if x != nil {
+		return x.Breed
+	}
+	return ""
+}
+
+// CreateCatReply represents the output structure for the CreateCat RPC.
+// It provides feedback about the cat creation process, indicating
+// whether the creation was successful and include additional
+// information such as a cat id.
+type CreateCatReply struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The user_id of the Cat
+	CatId string `protobuf:"bytes,1,opt,name=cat_id,json=catId,proto3" json:"cat_id,omitempty"`
+}
+
+func (x *CreateCatReply) Reset() {
+	*x = CreateCatReply{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tracker_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateCatReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateCatReply) ProtoMessage() {}
+
+func (x *CreateCatReply) ProtoReflect() protoreflect.Message {
+	mi := &file_tracker_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateCatReply.ProtoReflect.Descriptor instead.
+func (*CreateCatReply) Descriptor() ([]byte, []int) {
+	return file_tracker_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateCatReply) GetCatId() string {
+	if x != nil {
+		return x.CatId
 	}
 	return ""
 }
@@ -149,25 +265,36 @@ var File_tracker_proto protoreflect.FileDescriptor
 
 var file_tracker_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x07, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x22, 0x5b, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x3b, 0x0a, 0x09, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x70,
-	0x6c, 0x79, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12,
-	0x0a, 0x04, 0x75, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x75,
-	0x69, 0x64, 0x32, 0x45, 0x0a, 0x07, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x12, 0x3a, 0x0a,
-	0x0c, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x55, 0x73, 0x65, 0x72, 0x12, 0x14, 0x2e,
-	0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x2e, 0x55, 0x73,
-	0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x22, 0x00, 0x42, 0x2e, 0x5a, 0x2c, 0x67, 0x69, 0x74,
-	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x6e, 0x73, 0x6f, 0x6e, 0x63, 0x68, 0x74,
-	0x2f, 0x43, 0x61, 0x74, 0x2d, 0x46, 0x6f, 0x6f, 0x64, 0x2d, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x65,
-	0x72, 0x2f, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x07, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x22, 0x61, 0x0a, 0x11, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a,
+	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61,
+	0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12,
+	0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x2a, 0x0a, 0x0f, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x17,
+	0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x4e, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x43, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x10, 0x0a, 0x03, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x61, 0x67,
+	0x65, 0x12, 0x14, 0x0a, 0x05, 0x62, 0x72, 0x65, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x62, 0x72, 0x65, 0x65, 0x64, 0x22, 0x27, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x43, 0x61, 0x74, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x15, 0x0a, 0x06, 0x63, 0x61, 0x74,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x63, 0x61, 0x74, 0x49, 0x64,
+	0x32, 0x92, 0x01, 0x0a, 0x07, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x12, 0x44, 0x0a, 0x0a,
+	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1a, 0x2e, 0x74, 0x72, 0x61,
+	0x63, 0x6b, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72,
+	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x70, 0x6c, 0x79,
+	0x22, 0x00, 0x12, 0x41, 0x0a, 0x09, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x74, 0x12,
+	0x19, 0x2e, 0x74, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x43, 0x61, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x74, 0x72, 0x61,
+	0x63, 0x6b, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x74, 0x52, 0x65,
+	0x70, 0x6c, 0x79, 0x22, 0x00, 0x42, 0x2e, 0x5a, 0x2c, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x6e, 0x73, 0x6f, 0x6e, 0x63, 0x68, 0x74, 0x2f, 0x43, 0x61, 0x74,
+	0x2d, 0x46, 0x6f, 0x6f, 0x64, 0x2d, 0x54, 0x72, 0x61, 0x63, 0x6b, 0x65, 0x72, 0x2f, 0x74, 0x72,
+	0x61, 0x63, 0x6b, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -182,16 +309,20 @@ func file_tracker_proto_rawDescGZIP() []byte {
 	return file_tracker_proto_rawDescData
 }
 
-var file_tracker_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_tracker_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_tracker_proto_goTypes = []interface{}{
-	(*UserRequest)(nil), // 0: tracker.UserRequest
-	(*UserReply)(nil),   // 1: tracker.UserReply
+	(*CreateUserRequest)(nil), // 0: tracker.CreateUserRequest
+	(*CreateUserReply)(nil),   // 1: tracker.CreateUserReply
+	(*CreateCatRequest)(nil),  // 2: tracker.CreateCatRequest
+	(*CreateCatReply)(nil),    // 3: tracker.CreateCatReply
 }
 var file_tracker_proto_depIdxs = []int32{
-	0, // 0: tracker.Tracker.RegisterUser:input_type -> tracker.UserRequest
-	1, // 1: tracker.Tracker.RegisterUser:output_type -> tracker.UserReply
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 0: tracker.Tracker.CreateUser:input_type -> tracker.CreateUserRequest
+	2, // 1: tracker.Tracker.CreateCat:input_type -> tracker.CreateCatRequest
+	1, // 2: tracker.Tracker.CreateUser:output_type -> tracker.CreateUserReply
+	3, // 3: tracker.Tracker.CreateCat:output_type -> tracker.CreateCatReply
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -204,7 +335,7 @@ func file_tracker_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_tracker_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserRequest); i {
+			switch v := v.(*CreateUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -216,7 +347,31 @@ func file_tracker_proto_init() {
 			}
 		}
 		file_tracker_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserReply); i {
+			switch v := v.(*CreateUserReply); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tracker_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCatRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tracker_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateCatReply); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -234,7 +389,7 @@ func file_tracker_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tracker_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
