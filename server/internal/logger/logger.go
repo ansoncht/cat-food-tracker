@@ -1,4 +1,4 @@
-package logger
+package trackerlogger
 
 import (
 	"errors"
@@ -12,12 +12,14 @@ var (
 	ErrCreateLogger = errors.New("logger creation failed")
 )
 
+// Logger represents a set of loggers for different log levels.
 type Logger struct {
 	WarningLogger *log.Logger
 	InfoLogger    *log.Logger
 	ErrorLogger   *log.Logger
 }
 
+// GetLogger returns a singleton instance of the Logger.
 func GetLogger() (Logger, error) {
 	var (
 		customLogger Logger
@@ -36,6 +38,8 @@ func GetLogger() (Logger, error) {
 	return customLogger, nil
 }
 
+// newLogger creates a new Logger instance with three loggers for
+// different log levels.
 func newLogger() (Logger, error) {
 	var logger Logger
 

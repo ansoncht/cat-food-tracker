@@ -7,6 +7,14 @@ linters:
     - gocritic
     - errname
     - godot
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
 linters-settings:
   lll:
     line-length: 80  # Set your preferred line length limit for comments
+  nlreturn:
+    block-size: 2
