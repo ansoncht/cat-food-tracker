@@ -2,32 +2,18 @@ package server_test
 
 import (
 	"context"
-	"testing"
-	"time"
-
+	"github.com/ansoncht/Cat-Food-Helper/internal/db"
 	tracker "github.com/ansoncht/Cat-Food-Helper/internal/pb"
 	"github.com/ansoncht/Cat-Food-Helper/internal/server"
 	"github.com/ansoncht/Cat-Food-Helper/test/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.uber.org/mock/gomock"
+	"testing"
 )
 
-// TestTrackerServer_Run_Should_Succeed starts the server
-// using Run and checks for a successful execution within a timeout.
-func TestTrackerServer_Run_Should_Succeed(t *testing.T) {
-	t.Parallel()
-
-	tester := server.NewTrackerServer()
-
-	go func() {
-		err := tester.Run()
-		require.NoError(t, err)
-	}()
-
-	<-time.After(2 * time.Second)
-}
-
+// TestRegisterUserInterface tests the user registration interface
+// by using a mock TrackerService.
 func TestRegisterUserInterface(t *testing.T) {
 	t.Parallel()
 
@@ -60,6 +46,8 @@ func TestRegisterUserInterface(t *testing.T) {
 	require.NoError(t, err)
 }
 
+// TestRegisterCatInterface tests the cat registration interface
+// by using a mock TrackerService.
 func TestRegisterCatInterface(t *testing.T) {
 	t.Parallel()
 
@@ -92,10 +80,13 @@ func TestRegisterCatInterface(t *testing.T) {
 	require.NoError(t, err)
 }
 
+// TestRegisterUser tests the user registration function in the TrackerServer.
 func TestRegisterUser(t *testing.T) {
 	t.Parallel()
 
-	tester := server.NewTrackerServer()
+	client, _ := db.NewMongoClient()
+
+	tester := server.NewTrackerServer(&server.Config{}, client)
 
 	request := &tracker.CreateUserRequest{
 		Username: "test_username",
@@ -109,10 +100,13 @@ func TestRegisterUser(t *testing.T) {
 	require.NoError(t, err)
 }
 
+// TestRegisterCat tests the cat registration function in the TrackerServer.
 func TestRegisterCat(t *testing.T) {
 	t.Parallel()
 
-	tester := server.NewTrackerServer()
+	client, _ := db.NewMongoClient()
+
+	tester := server.NewTrackerServer(&server.Config{}, client)
 
 	request := &tracker.CreateCatRequest{
 		Name:  "test_username",

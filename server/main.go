@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/ansoncht/Cat-Food-Helper/internal/flagger"
+	trackerLogger "github.com/ansoncht/Cat-Food-Helper/internal/logger"
 	"log"
 	"os"
 
-	"github.com/ansoncht/Cat-Food-Helper/internal/logger"
+	"github.com/ansoncht/Cat-Food-Helper/internal/db"
 	"github.com/ansoncht/Cat-Food-Helper/internal/server"
 
 	"github.com/spf13/cobra"
@@ -22,8 +24,9 @@ const (
 	ensure your cat enjoys a happy and healthy diet.`
 )
 
-// nolint
 // Print a cool ASCII art header.
+//
+//nolint:lll
 func printCoolHeader() {
 	log.Print(`
 
@@ -52,10 +55,15 @@ func printCoolHeader() {
 `)
 }
 
-func newCommand() *cobra.Command {
-	logger, _ := logger.GetLogger()
-
+// newCommand creates and returns a configured Cobra command
+// for the 'tracker' application.
+func newCommand(
+	client *db.MongoClient,
+	logger trackerLogger.Logger,
+) (*cobra.Command, error) {
 	logger.InfoLogger.Println("in newCommand():: Starting Server...")
+
+	config := &server.Config{}
 
 	cmd := &cobra.Command{
 		Use:     "tracker [args]",
@@ -63,37 +71,60 @@ func newCommand() *cobra.Command {
 		Long:    longHelp,
 		Example: "tracker",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			trackerServer := server.NewTrackerServer()
-
-			trackerServer.GetFlag(cmd)
-
+			trackerServer := server.NewTrackerServer(config, client)
 			if err := trackerServer.Run(); err != nil {
-				logger.ErrorLogger.Fatalf(
+				logger.ErrorLogger.Printf(
 					"in newCommand():: Failed to create gRPC server - %v", err)
 
-				return fmt.Errorf("Cobra RunE error: %w", err)
+				return fmt.Errorf("in newCommand():: Cobra RunE error: %w", err)
 			}
 
 			return nil
 		},
 	}
 
-	server.SetFlag(cmd)
+	if err := flagger.SetFlags(cmd, config); err != nil {
+		logger.WarningLogger.Printf("in newCommand():: Failed to set flags - %v", err)
 
-	return cmd
+		return nil, fmt.Errorf("in newCommand():: Failed to set flags: %w", err)
+	}
+
+	return cmd, nil
 }
 
+// main is the entry point of the Cat Food Tracker application.
+// It initializes the logger, sets up the database client,
+// creates and configures the Cobra command, and executes the command.
 func main() {
-	_, err := logger.GetLogger()
+	// Prints cli header.
+	printCoolHeader()
+
+	// Initializes logger.
+	logger, err := trackerLogger.GetLogger()
 	if err != nil {
 		log.Fatalf("in main():: Failed to initialize logger - %v", err)
 	}
 
-	printCoolHeader()
+	// Initializes database client.
+	client, err := db.NewMongoClient()
+	if err != nil {
+		logger.ErrorLogger.Fatalf(
+			"in main():: Failed to create MongoDB client - %v", err)
+	}
 
-	cmd := newCommand()
+	// Sets up commander.
+	cmd, err := newCommand(client, logger)
+	if err != nil {
+		logger.ErrorLogger.Printf(
+			"in main():: Failed to create cobra command - %v",
+			err,
+		)
+		os.Exit(1)
+	}
+	// Runs commander.
 	if err := cmd.Execute(); err != nil {
-		log.Fatalf("in main():: Failed to start server - %v", err)
+		logger.ErrorLogger.Printf("in main():: Failed to start server - %v", err)
+		os.Exit(1)
 	}
 
 	os.Exit(0)
