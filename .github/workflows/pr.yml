@@ -2,13 +2,39 @@ name: Build
 
 on:
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
-  build:
-    runs-on:
-      - ubuntu-latest
+  prep:
+    runs-on: ubuntu-latest
+
+    outputs:
+      client: ${{ steps.filter.outputs.client }}
+      server: ${{ steps.filter.outputs.server }}
+
+    steps:
+      - name: Filter Directory
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            client:
+              - 'client/**'
+            server:
+              - 'server/**'
+
+      - name: Debug Output
+        run: echo ${{ toJson(steps.filter.outputs.changes) }}
+
+  build-server:
+    needs: prep
+
+    runs-on: ubuntu-latest
+
+
+    if: ${{ needs.prep.outputs.server == 'true' }}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,10 +50,38 @@ jobs:
           version: v1.54
           working-directory: server
 
+      - name: Dependencies
+        run: go mod tidy
+        working-directory: server
+
       - name: Build
         run: go build -v ./...
         working-directory: server
 
-      - name: Test
+      - name: Tests
         run: go test -v ./...
         working-directory: server
+
+  build-client:
+    needs: prep
+
+    runs-on: ubuntu-latest
+
+    if: ${{ needs.prep.outputs.client == 'true' }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Dependencies
+        run: flutter pub get
+        working-directory: client
+
+      - name: Tests
+        run: flutter test
+        working-directory: client
