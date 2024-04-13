@@ -11,7 +11,8 @@ jobs:
 
     outputs:
       client: ${{ steps.filter.outputs.client }}
-      server: ${{ steps.filter.outputs.server }}
+      go_server: ${{ steps.filter.outputs.go_server }}
+      java_server: ${{ steps.filter.outputs.java_server }}
 
     steps:
       - name: Filter Directory
@@ -21,19 +22,21 @@ jobs:
           filters: |
             client:
               - 'client/**'
-            server:
-              - 'server/**'
+            go_server:
+              - 'go_server/**'
+            java_server:
+              - 'java_server/**'
 
       - name: Debug Output
         run: echo ${{ toJson(steps.filter.outputs.changes) }}
 
-  build-server:
+  build-go-server:
     needs: prep
 
     runs-on: ubuntu-latest
 
 
-    if: ${{ needs.prep.outputs.server == 'true' }}
+    if: ${{ needs.prep.outputs.go_server == 'true' }}
 
     steps:
       - name: Checkout Code

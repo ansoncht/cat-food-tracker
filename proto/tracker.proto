@@ -3,6 +3,8 @@ syntax = "proto3";
 package tracker;
 
 option go_package = "github.com/ansoncht/Cat-Food-Tracker/tracker";
+option java_multiple_files = true;
+option java_package = "com.ansoncht.catfoodtracker.proto";
 
 // The tracking service definition.
 service Tracker {
