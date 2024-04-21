@@ -1,65 +1,46 @@
 package com.ansoncht.catfoodtracker.user;
 
-import com.ansoncht.catfoodtracker.proto.CreateUserReply;
-import com.ansoncht.catfoodtracker.proto.CreateUserRequest;
-import io.grpc.stub.StreamObserver;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class UserController {
 
-    private final GrpcController grpcController;
+    private final UserService userService;
 
-    public UserController(GrpcController grpcController) {
-        this.grpcController = grpcController;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/user/signup")
-    public String signUp(@Valid @RequestBody UserDTO.SignUpRequest signUpRequest) {
-        System.out.println("Calling REST signUp()");
+    public UserDTO.SignUpResponse signUp(@Valid @RequestBody UserDTO.SignUpRequest signUpRequest) {
+        System.out.println("calling REST signUp()");
+        System.out.println("user creation with: " + signUpRequest.getUsername());
 
-        final String[] result = new String[1];
+        UserDTO.SignUpResponse signUpResponse = this.userService.registerUser(signUpRequest);
+        if (signUpResponse != null) {
+            System.out.println("\u001B[32m" + "user creation succeeded with: " + signUpRequest.getUsername() + "\u001B[0m");
+            return signUpResponse;
+        }
 
-        StreamObserver<CreateUserReply> responseObserver = new StreamObserver<CreateUserReply>() {
-            @Override
-            public void onNext(CreateUserReply value) {
-                System.out.println("User created with ID: " + value.getUserId());
-                result[0] = value.getUserId();
-            }
+        System.err.println("user creation failed with: " + signUpRequest.getUsername());
 
-            @Override
-            public void onError(Throwable t) {
-                System.err.println("Error creating user: " + t.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                System.out.println("User creation completed");
-            }
-        };
-
-        CreateUserRequest createUserRequest = signUpRequest.convertToCreateUserRequest();
-
-        this.grpcController.createUser(createUserRequest, responseObserver);
-
-        return result[0];
+        return null;
     }
 
-    @PostMapping("/user/signin")
-    public String signIn(@Valid @RequestBody UserDTO.SignInRequest signInRequest) {
-        System.out.println("Logging in user with " + signInRequest.getEmail());
-//        CreateUserRequest request = CreateUserRequest.newBuilder()
-//                .setUsername("john_doe")
-//                .setEmail("john@example.com")
-//                .setPassword("secretpassword")
-//                .build();
-        //UserDAO signedUpUserDAO = this.userService.loginUser(signInRequest.getEmail());
-        //return signedUpUserDAO.getEmail();
-        return "hi";
-    }
+    //    @PostMapping("/user/signin")
+    //    public String signIn(@Valid @RequestBody UserDTO.SignInRequest signInRequest) {
+    //        System.out.println("Logging in user with " + signInRequest.getEmail());
+    //        CreateUserRequest request = CreateUserRequest.newBuilder()
+    //                .setUsername("john_doe")
+    //                .setEmail("john@example.com")
+    //                .setPassword("secretpassword")
+    //                .build();
+    // UserDAO signedUpUserDAO = this.userService.loginUser(signInRequest.getEmail());
+    // return signedUpUserDAO.getEmail();
+    //        return "hi";
+    //    }
 }

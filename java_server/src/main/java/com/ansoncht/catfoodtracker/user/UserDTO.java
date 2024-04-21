@@ -26,6 +26,13 @@ public class UserDTO {
         public void setPassword(String password) {
             this.password = password;
         }
+
+        public SignInRequest() {}
+
+        public SignInRequest(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
     }
 
     public static class SignUpRequest {
@@ -112,6 +119,46 @@ public class UserDTO {
                     .setPassword(this.getPassword())
                     .setUsername(this.getUsername())
                     .build();
+        }
+    }
+
+    public static class SignUpResponse {
+        @NotBlank private String id;
+
+        @NotBlank private String email;
+
+        @NotBlank private String username;
+
+        public SignUpResponse() {}
+
+        public SignUpResponse(String id, String email, String username) {
+            this.id = id;
+            this.email = email;
+            this.username = username;
+        }
+
+        public String getId() {
+            return this.id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getEmail() {
+            return this.email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getUsername() {
+            return this.username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
         }
     }
 }

@@ -8,6 +8,4 @@ public interface UserRepository extends MongoRepository<UserDAO, String> {
     UserDAO findByEmail(String email);
 
     UserDAO findByUsername(String username);
-
-    UserDAO updateUserDAOByEmail(String email);
 }
