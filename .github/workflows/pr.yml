@@ -51,19 +51,19 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.54
-          working-directory: server
+          working-directory: go_server
 
       - name: Dependencies
         run: go mod tidy
-        working-directory: server
+        working-directory: go_server
 
       - name: Build
         run: go build -v ./...
-        working-directory: server
+        working-directory: go_server
 
       - name: Tests
         run: go test -v ./...
-        working-directory: server
+        working-directory: go_server
 
   build-client:
     needs: prep
