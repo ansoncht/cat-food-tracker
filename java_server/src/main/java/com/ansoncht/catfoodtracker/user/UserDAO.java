@@ -27,9 +27,9 @@ public class UserDAO {
             String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.username = username;
     }
 
     public String getId() {

@@ -21,14 +21,23 @@ service Tracker {
 // It contains the necessary information for creating a user, including
 // details such as username, email, and password.
 message CreateUserRequest {
+  // The first name of the user
+  string first_name = 1;
+
+  // The last name of the user
+  string last_name = 2;
+
   // The username of the user
-  string username = 1;
+  string username = 3;
 
   // The email of the user
-  string email = 2;
+  string email = 4;
 
   // The password of the user
-  string password = 3;
+  string password = 5;
+
+  // The confirmed password of the user
+  string confirmed_password = 6;
 }
 
 // CreateUserReply represents the response message for the CreateUser RPC.
@@ -38,6 +47,15 @@ message CreateUserRequest {
 message CreateUserReply {
   // The user_id of the User
   string user_id = 1;
+
+  // The email of the User
+  string email = 2;
+
+  // The username of the User
+  string username = 3;
+
+  // The error of the User
+  string error = 4;
 }
 
 // CreateCatRequest represents the input structure for the CreateCat RPC.
