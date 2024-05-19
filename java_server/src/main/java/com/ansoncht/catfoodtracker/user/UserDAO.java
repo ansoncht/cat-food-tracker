@@ -8,28 +8,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("users")
 public class UserDAO {
-
     @Id private String id;
-
     @NotBlank private String firstName;
-
     @NotBlank private String lastName;
-
     @NotBlank private String username;
-
     @NotBlank @Email private String email;
-
     @NotBlank private String password;
 
-    public UserDAO() {}
+    private UserDAO() {}
 
-    public UserDAO(
+    private UserDAO(
             String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public static UserDAO createUserDAO(UserDTO.SignUpRequest userDTO) {
+        return new UserDAO(
+                userDTO.getFirstName(),
+                userDTO.getLastName(),
+                userDTO.getUsername(),
+                userDTO.getEmail(),
+                userDTO.getPassword());
+    }
+
+    public static UserDAO createUserDAO(
+            String firstName, String lastName, String username, String email, String password) {
+        return new UserDAO(firstName, lastName, username, email, password);
     }
 
     public String getId() {

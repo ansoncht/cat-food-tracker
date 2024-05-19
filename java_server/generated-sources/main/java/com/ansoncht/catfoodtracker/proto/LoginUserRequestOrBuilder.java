@@ -4,29 +4,29 @@
 // Protobuf Java Version: 3.25.3
 package com.ansoncht.catfoodtracker.proto;
 
-public interface CreateUserReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:tracker.CreateUserReply)
+public interface LoginUserRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:tracker.LoginUserRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
    * <pre>
-   * The user_id of the User
+   * The username of the User
    * </pre>
    *
-   * <code>string user_id = 1;</code>
-   * @return The userId.
+   * <code>string username = 1;</code>
+   * @return The username.
    */
-  java.lang.String getUserId();
+  java.lang.String getUsername();
   /**
    * <pre>
-   * The user_id of the User
+   * The username of the User
    * </pre>
    *
-   * <code>string user_id = 1;</code>
-   * @return The bytes for userId.
+   * <code>string username = 1;</code>
+   * @return The bytes for username.
    */
   com.google.protobuf.ByteString
-      getUserIdBytes();
+      getUsernameBytes();
 
   /**
    * <pre>
@@ -50,21 +50,21 @@ public interface CreateUserReplyOrBuilder extends
 
   /**
    * <pre>
-   * The username of the User
+   * The password of the User
    * </pre>
    *
-   * <code>string username = 3;</code>
-   * @return The username.
+   * <code>string password = 3;</code>
+   * @return The password.
    */
-  java.lang.String getUsername();
+  java.lang.String getPassword();
   /**
    * <pre>
-   * The username of the User
+   * The password of the User
    * </pre>
    *
-   * <code>string username = 3;</code>
-   * @return The bytes for username.
+   * <code>string password = 3;</code>
+   * @return The bytes for password.
    */
   com.google.protobuf.ByteString
-      getUsernameBytes();
+      getPasswordBytes();
 }

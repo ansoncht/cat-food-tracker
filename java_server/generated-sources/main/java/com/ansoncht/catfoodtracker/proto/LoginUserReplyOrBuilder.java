@@ -4,8 +4,8 @@
 // Protobuf Java Version: 3.25.3
 package com.ansoncht.catfoodtracker.proto;
 
-public interface CreateUserReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:tracker.CreateUserReply)
+public interface LoginUserReplyOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:tracker.LoginUserReply)
     com.google.protobuf.MessageOrBuilder {
 
   /**
