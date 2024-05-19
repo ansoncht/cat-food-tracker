@@ -1,5 +1,7 @@
 package com.ansoncht.catfoodtracker.user;
 
+import static com.ansoncht.catfoodtracker.user.UserDTO.createSignInRequest;
+import static com.ansoncht.catfoodtracker.user.UserDTO.createSignUpRequest;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
@@ -16,10 +18,10 @@ import java.util.Objects;
 public class UserServiceTest {
 
     UserDTO.SignUpRequest testSignUpRequest =
-            new UserDTO.SignUpRequest("test", "test", "test", "test@gmail.com", "test", "test");
+            createSignUpRequest("test", "test", "test", "test@gmail.com", "test", "test");
 
     UserDTO.SignInRequest testSignInRequest =
-            new UserDTO.SignInRequest("test@gmail.com", "test");
+            createSignInRequest("test@gmail.com", "test", "test");
 
     @Mock private UserRepository mockUserRepository;
 
@@ -39,10 +41,10 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testRestRegisterUser() {
-        System.out.println("Running testRegisterUser");
+    public void testRestRegisterUser() throws Exception {
+        System.out.println("---testRegisterUser() is invoked---");
 
-        UserDAO expectedUserDAO = new UserDAO("test", "test", "test", "test@gmail.com", "test");
+        UserDAO expectedUserDAO = UserDAO.createUserDAO("test", "test", "test", "test@gmail.com", "test");
 
         when(mockUserRepository.save(Mockito.any(UserDAO.class))).thenReturn(expectedUserDAO);
 

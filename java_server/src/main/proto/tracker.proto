@@ -9,11 +9,20 @@ option java_outer_classname = "TrakerProto";
 
 // The tracking service definition.
 service Tracker {
-  // Creates a user
+  // ******** User related RPCs ********
+  // Create a user.
   rpc CreateUser (CreateUserRequest) returns (CreateUserReply) {}
-  // Creates a cat
+  // Log in a user.
+  rpc LoginUser (LoginUserRequest) returns (LoginUserReply) {}
+  // Update a user.
+  // rpc UpdateUser (UpdateUserRequest) returns (UpdateUserReply) {}
+
+  // ******** Cat related RPCs ********
+  // Create a cat.
   rpc CreateCat (CreateCatRequest) returns (CreateCatReply) {}
-  // Creates a cat food
+
+  // ******** Cat Food related RPCs ********
+  // Creates a cat food.
   // rpc CreateFood (CreateFoodRequest) returns (CreateFoodReply) {}
 }
 
@@ -53,9 +62,32 @@ message CreateUserReply {
 
   // The username of the User
   string username = 3;
+}
 
-  // The error of the User
-  string error = 4;
+message LoginUserRequest {
+  // The username of the User
+  string username = 1;
+
+  // The email of the User
+  string email = 2;
+
+  // The password of the User
+  string password = 3;
+}
+
+// LoginUserReply represents the response message for the LoginUser RPC.
+// It provides feedback about the user login process, indicating
+// whether the login was successful and include additional
+// information such as a user id.
+message LoginUserReply {
+  // The user_id of the User
+  string user_id = 1;
+
+  // The email of the User
+  string email = 2;
+
+  // The username of the User
+  string username = 3;
 }
 
 // CreateCatRequest represents the input structure for the CreateCat RPC.

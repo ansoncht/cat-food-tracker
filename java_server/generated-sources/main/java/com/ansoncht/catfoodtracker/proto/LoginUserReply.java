@@ -6,24 +6,24 @@ package com.ansoncht.catfoodtracker.proto;
 
 /**
  * <pre>
- * CreateUserReply represents the response message for the CreateUser RPC.
- * It provides feedback about the user creation process, indicating
- * whether the creation was successful and include additional
+ * LoginUserReply represents the response message for the LoginUser RPC.
+ * It provides feedback about the user login process, indicating
+ * whether the login was successful and include additional
  * information such as a user id.
  * </pre>
  *
- * Protobuf type {@code tracker.CreateUserReply}
+ * Protobuf type {@code tracker.LoginUserReply}
  */
-public final class CreateUserReply extends
+public final class LoginUserReply extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:tracker.CreateUserReply)
-    CreateUserReplyOrBuilder {
+    // @@protoc_insertion_point(message_implements:tracker.LoginUserReply)
+    LoginUserReplyOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use CreateUserReply.newBuilder() to construct.
-  private CreateUserReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use LoginUserReply.newBuilder() to construct.
+  private LoginUserReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private CreateUserReply() {
+  private LoginUserReply() {
     userId_ = "";
     email_ = "";
     username_ = "";
@@ -33,20 +33,20 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new CreateUserReply();
+    return new LoginUserReply();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserReply_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_fieldAccessorTable
+    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserReply_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.ansoncht.catfoodtracker.proto.CreateUserReply.class, com.ansoncht.catfoodtracker.proto.CreateUserReply.Builder.class);
+            com.ansoncht.catfoodtracker.proto.LoginUserReply.class, com.ansoncht.catfoodtracker.proto.LoginUserReply.Builder.class);
   }
 
   public static final int USER_ID_FIELD_NUMBER = 1;
@@ -241,10 +241,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.ansoncht.catfoodtracker.proto.CreateUserReply)) {
+    if (!(obj instanceof com.ansoncht.catfoodtracker.proto.LoginUserReply)) {
       return super.equals(obj);
     }
-    com.ansoncht.catfoodtracker.proto.CreateUserReply other = (com.ansoncht.catfoodtracker.proto.CreateUserReply) obj;
+    com.ansoncht.catfoodtracker.proto.LoginUserReply other = (com.ansoncht.catfoodtracker.proto.LoginUserReply) obj;
 
     if (!getUserId()
         .equals(other.getUserId())) return false;
@@ -274,44 +274,44 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(byte[] data)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(java.io.InputStream input)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -319,26 +319,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseDelimitedFrom(java.io.InputStream input)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseDelimitedFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -351,7 +351,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.ansoncht.catfoodtracker.proto.CreateUserReply prototype) {
+  public static Builder newBuilder(com.ansoncht.catfoodtracker.proto.LoginUserReply prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -368,32 +368,32 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * CreateUserReply represents the response message for the CreateUser RPC.
-   * It provides feedback about the user creation process, indicating
-   * whether the creation was successful and include additional
+   * LoginUserReply represents the response message for the LoginUser RPC.
+   * It provides feedback about the user login process, indicating
+   * whether the login was successful and include additional
    * information such as a user id.
    * </pre>
    *
-   * Protobuf type {@code tracker.CreateUserReply}
+   * Protobuf type {@code tracker.LoginUserReply}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:tracker.CreateUserReply)
-      com.ansoncht.catfoodtracker.proto.CreateUserReplyOrBuilder {
+      // @@protoc_insertion_point(builder_implements:tracker.LoginUserReply)
+      com.ansoncht.catfoodtracker.proto.LoginUserReplyOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserReply_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_fieldAccessorTable
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ansoncht.catfoodtracker.proto.CreateUserReply.class, com.ansoncht.catfoodtracker.proto.CreateUserReply.Builder.class);
+              com.ansoncht.catfoodtracker.proto.LoginUserReply.class, com.ansoncht.catfoodtracker.proto.LoginUserReply.Builder.class);
     }
 
-    // Construct using com.ansoncht.catfoodtracker.proto.CreateUserReply.newBuilder()
+    // Construct using com.ansoncht.catfoodtracker.proto.LoginUserReply.newBuilder()
     private Builder() {
 
     }
@@ -416,17 +416,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserReply_descriptor;
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstanceForType() {
-      return com.ansoncht.catfoodtracker.proto.CreateUserReply.getDefaultInstance();
+    public com.ansoncht.catfoodtracker.proto.LoginUserReply getDefaultInstanceForType() {
+      return com.ansoncht.catfoodtracker.proto.LoginUserReply.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply build() {
-      com.ansoncht.catfoodtracker.proto.CreateUserReply result = buildPartial();
+    public com.ansoncht.catfoodtracker.proto.LoginUserReply build() {
+      com.ansoncht.catfoodtracker.proto.LoginUserReply result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -434,14 +434,14 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply buildPartial() {
-      com.ansoncht.catfoodtracker.proto.CreateUserReply result = new com.ansoncht.catfoodtracker.proto.CreateUserReply(this);
+    public com.ansoncht.catfoodtracker.proto.LoginUserReply buildPartial() {
+      com.ansoncht.catfoodtracker.proto.LoginUserReply result = new com.ansoncht.catfoodtracker.proto.LoginUserReply(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.ansoncht.catfoodtracker.proto.CreateUserReply result) {
+    private void buildPartial0(com.ansoncht.catfoodtracker.proto.LoginUserReply result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         result.userId_ = userId_;
@@ -488,16 +488,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.ansoncht.catfoodtracker.proto.CreateUserReply) {
-        return mergeFrom((com.ansoncht.catfoodtracker.proto.CreateUserReply)other);
+      if (other instanceof com.ansoncht.catfoodtracker.proto.LoginUserReply) {
+        return mergeFrom((com.ansoncht.catfoodtracker.proto.LoginUserReply)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.ansoncht.catfoodtracker.proto.CreateUserReply other) {
-      if (other == com.ansoncht.catfoodtracker.proto.CreateUserReply.getDefaultInstance()) return this;
+    public Builder mergeFrom(com.ansoncht.catfoodtracker.proto.LoginUserReply other) {
+      if (other == com.ansoncht.catfoodtracker.proto.LoginUserReply.getDefaultInstance()) return this;
       if (!other.getUserId().isEmpty()) {
         userId_ = other.userId_;
         bitField0_ |= 0x00000001;
@@ -859,23 +859,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:tracker.CreateUserReply)
+    // @@protoc_insertion_point(builder_scope:tracker.LoginUserReply)
   }
 
-  // @@protoc_insertion_point(class_scope:tracker.CreateUserReply)
-  private static final com.ansoncht.catfoodtracker.proto.CreateUserReply DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:tracker.LoginUserReply)
+  private static final com.ansoncht.catfoodtracker.proto.LoginUserReply DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.ansoncht.catfoodtracker.proto.CreateUserReply();
+    DEFAULT_INSTANCE = new com.ansoncht.catfoodtracker.proto.LoginUserReply();
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstance() {
+  public static com.ansoncht.catfoodtracker.proto.LoginUserReply getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<CreateUserReply>
-      PARSER = new com.google.protobuf.AbstractParser<CreateUserReply>() {
+  private static final com.google.protobuf.Parser<LoginUserReply>
+      PARSER = new com.google.protobuf.AbstractParser<LoginUserReply>() {
     @java.lang.Override
-    public CreateUserReply parsePartialFrom(
+    public LoginUserReply parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -894,17 +894,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<CreateUserReply> parser() {
+  public static com.google.protobuf.Parser<LoginUserReply> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<CreateUserReply> getParserForType() {
+  public com.google.protobuf.Parser<LoginUserReply> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstanceForType() {
+  public com.ansoncht.catfoodtracker.proto.LoginUserReply getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

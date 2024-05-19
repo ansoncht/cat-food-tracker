@@ -5,91 +5,84 @@
 package com.ansoncht.catfoodtracker.proto;
 
 /**
- * <pre>
- * CreateUserReply represents the response message for the CreateUser RPC.
- * It provides feedback about the user creation process, indicating
- * whether the creation was successful and include additional
- * information such as a user id.
- * </pre>
- *
- * Protobuf type {@code tracker.CreateUserReply}
+ * Protobuf type {@code tracker.LoginUserRequest}
  */
-public final class CreateUserReply extends
+public final class LoginUserRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:tracker.CreateUserReply)
-    CreateUserReplyOrBuilder {
+    // @@protoc_insertion_point(message_implements:tracker.LoginUserRequest)
+    LoginUserRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use CreateUserReply.newBuilder() to construct.
-  private CreateUserReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use LoginUserRequest.newBuilder() to construct.
+  private LoginUserRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private CreateUserReply() {
-    userId_ = "";
-    email_ = "";
+  private LoginUserRequest() {
     username_ = "";
+    email_ = "";
+    password_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new CreateUserReply();
+    return new LoginUserRequest();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_fieldAccessorTable
+    return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.ansoncht.catfoodtracker.proto.CreateUserReply.class, com.ansoncht.catfoodtracker.proto.CreateUserReply.Builder.class);
+            com.ansoncht.catfoodtracker.proto.LoginUserRequest.class, com.ansoncht.catfoodtracker.proto.LoginUserRequest.Builder.class);
   }
 
-  public static final int USER_ID_FIELD_NUMBER = 1;
+  public static final int USERNAME_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
-  private volatile java.lang.Object userId_ = "";
+  private volatile java.lang.Object username_ = "";
   /**
    * <pre>
-   * The user_id of the User
+   * The username of the User
    * </pre>
    *
-   * <code>string user_id = 1;</code>
-   * @return The userId.
+   * <code>string username = 1;</code>
+   * @return The username.
    */
   @java.lang.Override
-  public java.lang.String getUserId() {
-    java.lang.Object ref = userId_;
+  public java.lang.String getUsername() {
+    java.lang.Object ref = username_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      userId_ = s;
+      username_ = s;
       return s;
     }
   }
   /**
    * <pre>
-   * The user_id of the User
+   * The username of the User
    * </pre>
    *
-   * <code>string user_id = 1;</code>
-   * @return The bytes for userId.
+   * <code>string username = 1;</code>
+   * @return The bytes for username.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getUserIdBytes() {
-    java.lang.Object ref = userId_;
+      getUsernameBytes() {
+    java.lang.Object ref = username_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      userId_ = b;
+      username_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -143,47 +136,47 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int USERNAME_FIELD_NUMBER = 3;
+  public static final int PASSWORD_FIELD_NUMBER = 3;
   @SuppressWarnings("serial")
-  private volatile java.lang.Object username_ = "";
+  private volatile java.lang.Object password_ = "";
   /**
    * <pre>
-   * The username of the User
+   * The password of the User
    * </pre>
    *
-   * <code>string username = 3;</code>
-   * @return The username.
+   * <code>string password = 3;</code>
+   * @return The password.
    */
   @java.lang.Override
-  public java.lang.String getUsername() {
-    java.lang.Object ref = username_;
+  public java.lang.String getPassword() {
+    java.lang.Object ref = password_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      username_ = s;
+      password_ = s;
       return s;
     }
   }
   /**
    * <pre>
-   * The username of the User
+   * The password of the User
    * </pre>
    *
-   * <code>string username = 3;</code>
-   * @return The bytes for username.
+   * <code>string password = 3;</code>
+   * @return The bytes for password.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getUsernameBytes() {
-    java.lang.Object ref = username_;
+      getPasswordBytes() {
+    java.lang.Object ref = password_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      username_ = b;
+      password_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -204,14 +197,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, userId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, email_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, username_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, password_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -222,14 +215,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(userId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, userId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, email_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, username_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, password_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -241,17 +234,17 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.ansoncht.catfoodtracker.proto.CreateUserReply)) {
+    if (!(obj instanceof com.ansoncht.catfoodtracker.proto.LoginUserRequest)) {
       return super.equals(obj);
     }
-    com.ansoncht.catfoodtracker.proto.CreateUserReply other = (com.ansoncht.catfoodtracker.proto.CreateUserReply) obj;
+    com.ansoncht.catfoodtracker.proto.LoginUserRequest other = (com.ansoncht.catfoodtracker.proto.LoginUserRequest) obj;
 
-    if (!getUserId()
-        .equals(other.getUserId())) return false;
-    if (!getEmail()
-        .equals(other.getEmail())) return false;
     if (!getUsername()
         .equals(other.getUsername())) return false;
+    if (!getEmail()
+        .equals(other.getEmail())) return false;
+    if (!getPassword()
+        .equals(other.getPassword())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -263,55 +256,55 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + USER_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getUserId().hashCode();
-    hash = (37 * hash) + EMAIL_FIELD_NUMBER;
-    hash = (53 * hash) + getEmail().hashCode();
     hash = (37 * hash) + USERNAME_FIELD_NUMBER;
     hash = (53 * hash) + getUsername().hashCode();
+    hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+    hash = (53 * hash) + getEmail().hashCode();
+    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+    hash = (53 * hash) + getPassword().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(byte[] data)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(java.io.InputStream input)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -319,26 +312,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseDelimitedFrom(java.io.InputStream input)
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseDelimitedFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply parseFrom(
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -351,7 +344,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.ansoncht.catfoodtracker.proto.CreateUserReply prototype) {
+  public static Builder newBuilder(com.ansoncht.catfoodtracker.proto.LoginUserRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -367,33 +360,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * CreateUserReply represents the response message for the CreateUser RPC.
-   * It provides feedback about the user creation process, indicating
-   * whether the creation was successful and include additional
-   * information such as a user id.
-   * </pre>
-   *
-   * Protobuf type {@code tracker.CreateUserReply}
+   * Protobuf type {@code tracker.LoginUserRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:tracker.CreateUserReply)
-      com.ansoncht.catfoodtracker.proto.CreateUserReplyOrBuilder {
+      // @@protoc_insertion_point(builder_implements:tracker.LoginUserRequest)
+      com.ansoncht.catfoodtracker.proto.LoginUserRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_fieldAccessorTable
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.ansoncht.catfoodtracker.proto.CreateUserReply.class, com.ansoncht.catfoodtracker.proto.CreateUserReply.Builder.class);
+              com.ansoncht.catfoodtracker.proto.LoginUserRequest.class, com.ansoncht.catfoodtracker.proto.LoginUserRequest.Builder.class);
     }
 
-    // Construct using com.ansoncht.catfoodtracker.proto.CreateUserReply.newBuilder()
+    // Construct using com.ansoncht.catfoodtracker.proto.LoginUserRequest.newBuilder()
     private Builder() {
 
     }
@@ -407,26 +393,26 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      userId_ = "";
-      email_ = "";
       username_ = "";
+      email_ = "";
+      password_ = "";
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_CreateUserReply_descriptor;
+      return com.ansoncht.catfoodtracker.proto.TrakerProto.internal_static_tracker_LoginUserRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstanceForType() {
-      return com.ansoncht.catfoodtracker.proto.CreateUserReply.getDefaultInstance();
+    public com.ansoncht.catfoodtracker.proto.LoginUserRequest getDefaultInstanceForType() {
+      return com.ansoncht.catfoodtracker.proto.LoginUserRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply build() {
-      com.ansoncht.catfoodtracker.proto.CreateUserReply result = buildPartial();
+    public com.ansoncht.catfoodtracker.proto.LoginUserRequest build() {
+      com.ansoncht.catfoodtracker.proto.LoginUserRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -434,23 +420,23 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.ansoncht.catfoodtracker.proto.CreateUserReply buildPartial() {
-      com.ansoncht.catfoodtracker.proto.CreateUserReply result = new com.ansoncht.catfoodtracker.proto.CreateUserReply(this);
+    public com.ansoncht.catfoodtracker.proto.LoginUserRequest buildPartial() {
+      com.ansoncht.catfoodtracker.proto.LoginUserRequest result = new com.ansoncht.catfoodtracker.proto.LoginUserRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.ansoncht.catfoodtracker.proto.CreateUserReply result) {
+    private void buildPartial0(com.ansoncht.catfoodtracker.proto.LoginUserRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.userId_ = userId_;
+        result.username_ = username_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.email_ = email_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.username_ = username_;
+        result.password_ = password_;
       }
     }
 
@@ -488,18 +474,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.ansoncht.catfoodtracker.proto.CreateUserReply) {
-        return mergeFrom((com.ansoncht.catfoodtracker.proto.CreateUserReply)other);
+      if (other instanceof com.ansoncht.catfoodtracker.proto.LoginUserRequest) {
+        return mergeFrom((com.ansoncht.catfoodtracker.proto.LoginUserRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.ansoncht.catfoodtracker.proto.CreateUserReply other) {
-      if (other == com.ansoncht.catfoodtracker.proto.CreateUserReply.getDefaultInstance()) return this;
-      if (!other.getUserId().isEmpty()) {
-        userId_ = other.userId_;
+    public Builder mergeFrom(com.ansoncht.catfoodtracker.proto.LoginUserRequest other) {
+      if (other == com.ansoncht.catfoodtracker.proto.LoginUserRequest.getDefaultInstance()) return this;
+      if (!other.getUsername().isEmpty()) {
+        username_ = other.username_;
         bitField0_ |= 0x00000001;
         onChanged();
       }
@@ -508,8 +494,8 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
-      if (!other.getUsername().isEmpty()) {
-        username_ = other.username_;
+      if (!other.getPassword().isEmpty()) {
+        password_ = other.password_;
         bitField0_ |= 0x00000004;
         onChanged();
       }
@@ -540,7 +526,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              userId_ = input.readStringRequireUtf8();
+              username_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
@@ -550,7 +536,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 18
             case 26: {
-              username_ = input.readStringRequireUtf8();
+              password_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000004;
               break;
             } // case 26
@@ -571,22 +557,22 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object userId_ = "";
+    private java.lang.Object username_ = "";
     /**
      * <pre>
-     * The user_id of the User
+     * The username of the User
      * </pre>
      *
-     * <code>string user_id = 1;</code>
-     * @return The userId.
+     * <code>string username = 1;</code>
+     * @return The username.
      */
-    public java.lang.String getUserId() {
-      java.lang.Object ref = userId_;
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        userId_ = s;
+        username_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
@@ -594,20 +580,20 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The user_id of the User
+     * The username of the User
      * </pre>
      *
-     * <code>string user_id = 1;</code>
-     * @return The bytes for userId.
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
      */
     public com.google.protobuf.ByteString
-        getUserIdBytes() {
-      java.lang.Object ref = userId_;
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        userId_ = b;
+        username_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -615,49 +601,49 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The user_id of the User
+     * The username of the User
      * </pre>
      *
-     * <code>string user_id = 1;</code>
-     * @param value The userId to set.
+     * <code>string username = 1;</code>
+     * @param value The username to set.
      * @return This builder for chaining.
      */
-    public Builder setUserId(
+    public Builder setUsername(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      userId_ = value;
+      username_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The user_id of the User
+     * The username of the User
      * </pre>
      *
-     * <code>string user_id = 1;</code>
+     * <code>string username = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearUserId() {
-      userId_ = getDefaultInstance().getUserId();
+    public Builder clearUsername() {
+      username_ = getDefaultInstance().getUsername();
       bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The user_id of the User
+     * The username of the User
      * </pre>
      *
-     * <code>string user_id = 1;</code>
-     * @param value The bytes for userId to set.
+     * <code>string username = 1;</code>
+     * @param value The bytes for username to set.
      * @return This builder for chaining.
      */
-    public Builder setUserIdBytes(
+    public Builder setUsernameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      userId_ = value;
+      username_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
@@ -755,22 +741,22 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object username_ = "";
+    private java.lang.Object password_ = "";
     /**
      * <pre>
-     * The username of the User
+     * The password of the User
      * </pre>
      *
-     * <code>string username = 3;</code>
-     * @return The username.
+     * <code>string password = 3;</code>
+     * @return The password.
      */
-    public java.lang.String getUsername() {
-      java.lang.Object ref = username_;
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        username_ = s;
+        password_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
@@ -778,20 +764,20 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The username of the User
+     * The password of the User
      * </pre>
      *
-     * <code>string username = 3;</code>
-     * @return The bytes for username.
+     * <code>string password = 3;</code>
+     * @return The bytes for password.
      */
     public com.google.protobuf.ByteString
-        getUsernameBytes() {
-      java.lang.Object ref = username_;
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        username_ = b;
+        password_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -799,49 +785,49 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The username of the User
+     * The password of the User
      * </pre>
      *
-     * <code>string username = 3;</code>
-     * @param value The username to set.
+     * <code>string password = 3;</code>
+     * @param value The password to set.
      * @return This builder for chaining.
      */
-    public Builder setUsername(
+    public Builder setPassword(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      username_ = value;
+      password_ = value;
       bitField0_ |= 0x00000004;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The username of the User
+     * The password of the User
      * </pre>
      *
-     * <code>string username = 3;</code>
+     * <code>string password = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearUsername() {
-      username_ = getDefaultInstance().getUsername();
+    public Builder clearPassword() {
+      password_ = getDefaultInstance().getPassword();
       bitField0_ = (bitField0_ & ~0x00000004);
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * The username of the User
+     * The password of the User
      * </pre>
      *
-     * <code>string username = 3;</code>
-     * @param value The bytes for username to set.
+     * <code>string password = 3;</code>
+     * @param value The bytes for password to set.
      * @return This builder for chaining.
      */
-    public Builder setUsernameBytes(
+    public Builder setPasswordBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      username_ = value;
+      password_ = value;
       bitField0_ |= 0x00000004;
       onChanged();
       return this;
@@ -859,23 +845,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:tracker.CreateUserReply)
+    // @@protoc_insertion_point(builder_scope:tracker.LoginUserRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:tracker.CreateUserReply)
-  private static final com.ansoncht.catfoodtracker.proto.CreateUserReply DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:tracker.LoginUserRequest)
+  private static final com.ansoncht.catfoodtracker.proto.LoginUserRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.ansoncht.catfoodtracker.proto.CreateUserReply();
+    DEFAULT_INSTANCE = new com.ansoncht.catfoodtracker.proto.LoginUserRequest();
   }
 
-  public static com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstance() {
+  public static com.ansoncht.catfoodtracker.proto.LoginUserRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<CreateUserReply>
-      PARSER = new com.google.protobuf.AbstractParser<CreateUserReply>() {
+  private static final com.google.protobuf.Parser<LoginUserRequest>
+      PARSER = new com.google.protobuf.AbstractParser<LoginUserRequest>() {
     @java.lang.Override
-    public CreateUserReply parsePartialFrom(
+    public LoginUserRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -894,17 +880,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<CreateUserReply> parser() {
+  public static com.google.protobuf.Parser<LoginUserRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<CreateUserReply> getParserForType() {
+  public com.google.protobuf.Parser<LoginUserRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.ansoncht.catfoodtracker.proto.CreateUserReply getDefaultInstanceForType() {
+  public com.ansoncht.catfoodtracker.proto.LoginUserRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

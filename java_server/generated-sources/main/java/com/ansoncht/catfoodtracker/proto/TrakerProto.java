@@ -26,6 +26,16 @@ public final class TrakerProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_tracker_CreateUserReply_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tracker_LoginUserRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_tracker_LoginUserRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tracker_LoginUserReply_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_tracker_LoginUserReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tracker_CreateCatRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -48,17 +58,22 @@ public final class TrakerProto {
       "equest\022\022\n\nfirst_name\030\001 \001(\t\022\021\n\tlast_name\030" +
       "\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022\020" +
       "\n\010password\030\005 \001(\t\022\032\n\022confirmed_password\030\006" +
-      " \001(\t\"R\n\017CreateUserReply\022\017\n\007user_id\030\001 \001(\t" +
-      "\022\r\n\005email\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\022\r\n\005err" +
-      "or\030\004 \001(\t\"<\n\020CreateCatRequest\022\014\n\004name\030\001 \001" +
-      "(\t\022\013\n\003age\030\002 \001(\005\022\r\n\005breed\030\003 \001(\t\" \n\016Create" +
-      "CatReply\022\016\n\006cat_id\030\001 \001(\t2\222\001\n\007Tracker\022D\n\n" +
-      "CreateUser\022\032.tracker.CreateUserRequest\032\030" +
-      ".tracker.CreateUserReply\"\000\022A\n\tCreateCat\022" +
-      "\031.tracker.CreateCatRequest\032\027.tracker.Cre" +
-      "ateCatReply\"\000B`\n!com.ansoncht.catfoodtra" +
-      "cker.protoB\013TrakerProtoP\001Z,github.com/an" +
-      "soncht/Cat-Food-Tracker/trackerb\006proto3"
+      " \001(\t\"C\n\017CreateUserReply\022\017\n\007user_id\030\001 \001(\t" +
+      "\022\r\n\005email\030\002 \001(\t\022\020\n\010username\030\003 \001(\t\"E\n\020Log" +
+      "inUserRequest\022\020\n\010username\030\001 \001(\t\022\r\n\005email" +
+      "\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\"B\n\016LoginUserRep" +
+      "ly\022\017\n\007user_id\030\001 \001(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010us" +
+      "ername\030\003 \001(\t\"<\n\020CreateCatRequest\022\014\n\004name" +
+      "\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\r\n\005breed\030\003 \001(\t\" \n\016Cr" +
+      "eateCatReply\022\016\n\006cat_id\030\001 \001(\t2\325\001\n\007Tracker" +
+      "\022D\n\nCreateUser\022\032.tracker.CreateUserReque" +
+      "st\032\030.tracker.CreateUserReply\"\000\022A\n\tLoginU" +
+      "ser\022\031.tracker.LoginUserRequest\032\027.tracker" +
+      ".LoginUserReply\"\000\022A\n\tCreateCat\022\031.tracker" +
+      ".CreateCatRequest\032\027.tracker.CreateCatRep" +
+      "ly\"\000B`\n!com.ansoncht.catfoodtracker.prot" +
+      "oB\013TrakerProtoP\001Z,github.com/ansoncht/Ca" +
+      "t-Food-Tracker/trackerb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -75,15 +90,27 @@ public final class TrakerProto {
     internal_static_tracker_CreateUserReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tracker_CreateUserReply_descriptor,
-        new java.lang.String[] { "UserId", "Email", "Username", "Error", });
-    internal_static_tracker_CreateCatRequest_descriptor =
+        new java.lang.String[] { "UserId", "Email", "Username", });
+    internal_static_tracker_LoginUserRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_tracker_LoginUserRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_tracker_LoginUserRequest_descriptor,
+        new java.lang.String[] { "Username", "Email", "Password", });
+    internal_static_tracker_LoginUserReply_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_tracker_LoginUserReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_tracker_LoginUserReply_descriptor,
+        new java.lang.String[] { "UserId", "Email", "Username", });
+    internal_static_tracker_CreateCatRequest_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_tracker_CreateCatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tracker_CreateCatRequest_descriptor,
         new java.lang.String[] { "Name", "Age", "Breed", });
     internal_static_tracker_CreateCatReply_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_tracker_CreateCatReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tracker_CreateCatReply_descriptor,
