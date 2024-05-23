@@ -24,7 +24,7 @@ public class RestUserController {
     public ResponseEntity<UserDTO.SignUpResponse> signUp(
             @Valid @RequestBody UserDTO.SignUpRequest signUpRequest) {
         try {
-            LOGGER.info("---signUp() is invoked---");
+            LOGGER.info("signUp() is invoked");
             LOGGER.info("user creation with: " + signUpRequest.getUsername());
 
             UserDTO.SignUpResponse signUpResponse = this.userService.registerUser(signUpRequest);
@@ -52,7 +52,7 @@ public class RestUserController {
     @PostMapping("/user/signin")
     public ResponseEntity<UserDTO.SignInResponse> signIn(@Valid @RequestBody UserDTO.SignInRequest signInRequest) {
         try {
-            LOGGER.info("---signIn() is invoked---");
+            LOGGER.info("signIn() is invoked");
             LOGGER.info(
                     String.format(
                             "user login with email: %s; username: %s",
