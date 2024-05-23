@@ -10,7 +10,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private final Logger LOGGER = LoggerFactory.getLogger(RestUserController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -19,8 +19,8 @@ public class UserService {
 
     public UserDTO.SignUpResponse registerUser(UserDTO.SignUpRequest userDTO) throws Exception {
         try {
-            LOGGER.info("---registerUser() is invoked---");
-            LOGGER.info("user creation with: " + userDTO.getUsername());
+            LOGGER.info("registerUser() is invoked");
+            LOGGER.info("user register with: " + userDTO.getEmail());
             LOGGER.debug(String.format("first name: %s; last name %s; username: %s; email: %s",
                     userDTO.getFirstName(),
                     userDTO.getFirstName(),
@@ -41,7 +41,7 @@ public class UserService {
 
             return UserDTO.createUserDTOSignUpResponse(createdUser);
         } catch (Exception e) {
-            LOGGER.error("exception in registerUser()" + e.getMessage());
+            LOGGER.error("exception in registerUser(): " + e.getMessage());
 
             throw new Exception("error creating user: " + e.getMessage(), e);
         }
@@ -49,7 +49,7 @@ public class UserService {
 
     public UserDTO.SignInResponse loginUser(UserDTO.SignInRequest userDTO) throws Exception {
         try {
-            LOGGER.info("---loginUser() is invoked---");
+            LOGGER.info("loginUser() is invoked");
             LOGGER.info("user login with: " + userDTO.getEmail());
             LOGGER.debug(String.format("username: %s; email: %s",
                     userDTO.getUsername(),
@@ -72,19 +72,19 @@ public class UserService {
     }
 
     private String encryptPassword(String password) {
-        LOGGER.info("---encryptPassword() is invoked---");
+        LOGGER.info("encryptPassword() is invoked");
 
         return this.bCryptPasswordEncoder.encode(password);
     }
 
     private boolean decryptPassword(String input, String saved) {
-        LOGGER.info("---decryptPassword() is invoked---");
+        LOGGER.info("decryptPassword() is invoked");
 
         return this.bCryptPasswordEncoder.matches(input, saved);
     }
 
     private boolean userExists(String username, String email) {
-        LOGGER.info("---userExists() is invoked---");
+        LOGGER.info("userExists() is invoked");
 
         UserDAO usernameUser = userRepository.findByUsername(username);
         UserDAO emailUser = userRepository.findByEmail(email);

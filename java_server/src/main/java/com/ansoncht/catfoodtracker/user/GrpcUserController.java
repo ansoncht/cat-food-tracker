@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @GrpcService
 public class GrpcUserController extends TrackerGrpc.TrackerImplBase {
     private final UserService userService;
-    private final Logger LOGGER = LoggerFactory.getLogger(RestUserController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(GrpcUserController.class);
 
     public GrpcUserController(UserService userService) {
         this.userService = userService;
@@ -23,7 +23,7 @@ public class GrpcUserController extends TrackerGrpc.TrackerImplBase {
     public void createUser(
             CreateUserRequest createUserRequest, StreamObserver<CreateUserReply> responseObserver) {
         try {
-            LOGGER.info("---CreateUser() rpc is invoked---");
+            LOGGER.info("CreateUser() rpc is invoked");
             LOGGER.info(
                     String.format(
                             "user creation with email: %s; username: %s",
@@ -60,7 +60,7 @@ public class GrpcUserController extends TrackerGrpc.TrackerImplBase {
     public void loginUser(
             LoginUserRequest loginUserRequest, StreamObserver<LoginUserReply> responseObserver) {
         try {
-            LOGGER.info("---LoginUser() rpc is invoked---");
+            LOGGER.info("LoginUser() rpc is invoked");
             LOGGER.info(
                     String.format(
                             "user login with email: %s; username: %s",
