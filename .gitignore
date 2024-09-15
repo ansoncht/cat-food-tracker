@@ -28,6 +28,11 @@ doc/api/
 
 # Intellij
 .idea/
+**/.idea/
+
+# VSCode
+.vscode/
+**/.vscode/
 
 # DS_STORE
 .DS_Store
