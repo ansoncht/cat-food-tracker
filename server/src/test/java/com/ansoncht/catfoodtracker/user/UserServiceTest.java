@@ -27,8 +27,7 @@ public class UserServiceTest {
     @Mock
     private UserRepository mockUserRepository;
 
-    UserRegistrationDTO testSignUpRequest =
-            new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
+    UserRegistrationDTO testSignUpRequest = new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
     UserLoginDTO testSignInRequest = new UserLoginDTO("test@gmail.com", "test");
 
     private UserService userService;
@@ -48,8 +47,7 @@ public class UserServiceTest {
 
     @Test
     public void testRegisterUser_ValidRequest_ShouldSucceed() {
-        UserRegistrationDTO req =
-                new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
+        UserRegistrationDTO req = new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
         String encodedPassword = new BCryptPasswordEncoder().encode(req.getPassword());
         User expected = new User("test", "test", "test", "test@gmail.com", encodedPassword);
 
@@ -71,8 +69,7 @@ public class UserServiceTest {
 
     @Test
     public void testRegisterUser_ExistingUsername_ThrowsException() {
-        UserRegistrationDTO req =
-                new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
+        UserRegistrationDTO req = new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
 
         when(mockUserRepository.existsByUsername(req.getUsername())).thenReturn(true);
 
@@ -81,8 +78,7 @@ public class UserServiceTest {
 
     @Test
     public void testRegisterUser_ExistingEmail_ThrowsException() {
-        UserRegistrationDTO req =
-                new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
+        UserRegistrationDTO req = new UserRegistrationDTO("test", "test@gmail.com", "test", "test", "test");
 
         when(mockUserRepository.existsByEmail(req.getUsername())).thenReturn(true);
 
@@ -95,7 +91,8 @@ public class UserServiceTest {
         String encodedPassword = new BCryptPasswordEncoder().encode(req.getPassword());
         User expected = new User("test", "test", "test", "test@gmail.com", encodedPassword);
 
-        when(mockUserRepository.findByUsernameOrEmail(req.getUsernameOrEmail()))
+        when(mockUserRepository.findByUsernameOrEmail(req.getUsernameOrEmail(),
+                req.getUsernameOrEmail()))
                 .thenReturn(Optional.of(expected));
 
         UserDTO actual = userService.authenticateUser(req);
@@ -107,7 +104,7 @@ public class UserServiceTest {
         assertEquals("Response First Name: ", actual.getFirstName(), expected.getFirstName());
         assertEquals("Response Last Name: ", actual.getLastName(), expected.getLastName());
 
-        verify(mockUserRepository).findByUsernameOrEmail(req.getUsernameOrEmail());
+        verify(mockUserRepository).findByUsernameOrEmail(req.getUsernameOrEmail(), req.getUsernameOrEmail());
     }
 
     @Test
@@ -118,11 +115,11 @@ public class UserServiceTest {
         UserLoginDTO req = new UserLoginDTO("test@gmail.com", incorrectPassword);
         User expected = new User("test", "test", "test", "test@gmail.com", encodedCorrectPassword);
 
-        when(mockUserRepository.findByUsernameOrEmail(req.getUsernameOrEmail()))
+        when(mockUserRepository.findByUsernameOrEmail(req.getUsernameOrEmail(), req.getUsernameOrEmail()))
                 .thenReturn(Optional.of(expected));
 
         assertThrows(RuntimeException.class, () -> userService.authenticateUser(req));
 
-        verify(mockUserRepository).findByUsernameOrEmail(req.getUsernameOrEmail());
+        verify(mockUserRepository).findByUsernameOrEmail(req.getUsernameOrEmail(), req.getUsernameOrEmail());
     }
 }
