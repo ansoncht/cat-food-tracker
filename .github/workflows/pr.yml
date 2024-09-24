@@ -2,8 +2,7 @@ name: Build
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   prep:
@@ -11,7 +10,7 @@ jobs:
 
     outputs:
       client: ${{ steps.filter.outputs.client }}
-      java_server: ${{ steps.filter.outputs.java_server }}
+      server: ${{ steps.filter.outputs.server }}
 
     steps:
       - name: Filter Directory
@@ -19,20 +18,15 @@ jobs:
         id: filter
         with:
           filters: |
-            client:
-              - 'client/**'
-            java_server:
-              - 'java_server/**'
-
-      - name: Debug Output
-        run: echo ${{ toJson(steps.filter.outputs.changes) }}
+            client: ['client/**']
+            server: ['server/**']
 
   build-client:
     needs: prep
 
-    runs-on: ubuntu-latest
-
     if: ${{ needs.prep.outputs.client == 'true' }}
+
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
@@ -50,3 +44,27 @@ jobs:
       - name: Tests
         run: flutter test
         working-directory: client
+
+  build-server:
+    needs: prep
+
+    if: ${{ needs.prep.outputs.server == 'true' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build
+        run: ./gradlew build
+        working-directory: server
