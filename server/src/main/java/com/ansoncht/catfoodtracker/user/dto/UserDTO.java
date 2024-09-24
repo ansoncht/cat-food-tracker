@@ -104,8 +104,8 @@ public class UserDTO {
     }
 
     public static UserDTO fromUser(User user) {
-        return new UserDTO(user.getId(), user.getUsername(), user.getFirstName(),
-                user.getLastName(), user.getEmail(), user.getCreatedAt(), user.getUpdatedAt());
+        return new UserDTO(user.getId(), user.getUsername(), user.getEmail(), user.getFirstName(),
+                user.getLastName(), user.getCreatedAt(), user.getUpdatedAt());
     }
 
     @Override

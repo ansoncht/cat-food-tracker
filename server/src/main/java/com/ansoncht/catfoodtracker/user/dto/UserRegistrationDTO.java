@@ -79,7 +79,7 @@ public class UserRegistrationDTO {
 
 
     public User toUser(String encryptedPassword) {
-        return new User(this.username, this.firstName, this.lastName, this.email,
+        return new User(this.username, this.email, this.firstName, this.lastName,
                 encryptedPassword);
     }
 
